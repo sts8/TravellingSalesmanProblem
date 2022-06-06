@@ -2,6 +2,8 @@
 
 Implementation of the search for an (optimal) solution to the Travelling Salesman Problem. Used as an example project.
 
+![Travelling_Salesman_Search](https://user-images.githubusercontent.com/104705788/172116249-5566f2c7-642e-4cfc-bb3a-963551786143.png)
+
 
 TODO
 - create Configuration class to hold the current configuration
@@ -16,4 +18,4 @@ TODO
 - use and enforce code style template
 - improve and refactor constants in GUI
 - improve parameter parsing and handling
-- 
+
