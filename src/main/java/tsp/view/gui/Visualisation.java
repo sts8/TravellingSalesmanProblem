@@ -5,6 +5,7 @@ import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
 import tsp.controller.Controller;
 import tsp.model.Route;
+import tsp.model.TSPConfiguration;
 import tsp.view.TSPView;
 
 import javax.swing.JFrame;
@@ -71,11 +72,8 @@ public class Visualisation extends JFrame implements TSPView {
     }
 
     @Override
-    public void notifyRegistered(String configuration) {
-    }
-
-    @Override
-    public void notifyInitialized(String configuration) {
+    public void notifyRegistered(TSPConfiguration configuration) {
+        infoPanel.displayConfiguration(configuration);
     }
 
     @Override

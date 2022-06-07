@@ -6,7 +6,6 @@ Implementation of the search for an (optimal) solution to the Travelling Salesma
 
 
 TODO
-- create Configuration class to hold the current configuration
 - display configuration in GUI and CmdLineView
 - more tests!
 - improve README file

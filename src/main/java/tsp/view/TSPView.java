@@ -1,12 +1,11 @@
 package tsp.view;
 
 import tsp.model.Route;
+import tsp.model.TSPConfiguration;
 
 public interface TSPView {
 
-    void notifyRegistered(String configuration);
-
-    void notifyInitialized(String configuration);
+    void notifyRegistered(TSPConfiguration configuration);
 
     void notifySearchStarted();
 

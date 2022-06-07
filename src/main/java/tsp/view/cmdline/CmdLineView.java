@@ -2,24 +2,26 @@ package tsp.view.cmdline;
 
 import tsp.controller.Controller;
 import tsp.model.Route;
+import tsp.model.TSPConfiguration;
 import tsp.view.TSPView;
 
 public class CmdLineView implements TSPView {
 
     public CmdLineView(Controller controller) {
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> controller.unregisterView(this))); // CTRL+C should be used to stop the search.
+
+        // CTRL+C should be used to stop the search.
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            System.out.println("Command Line Interrupt, unregistering this Command Line View.");
+            controller.unregisterView(this);
+        }));
     }
 
     @Override
-    public void notifyRegistered(String configuration) {
+    public void notifyRegistered(TSPConfiguration configuration) {
         System.out.println("The controller reports that this cmdline view was successfully registered. Current configuration:");
-        System.out.println(configuration);
-    }
-
-    @Override
-    public void notifyInitialized(String configuration) {
-        System.out.println("The controller reports that it was (re-)initialized. New configuration:");
-        System.out.println(configuration);
+        System.out.println("Problem: " + configuration.getProblemGenerator().getClass().getSimpleName());
+        System.out.println("Number of Locations: " + configuration.getNumberOfLocations());
+        System.out.println("Algorithm: " + configuration.getAlgorithm().getClass().getSimpleName());
     }
 
     @Override

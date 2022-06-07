@@ -2,6 +2,7 @@ package tsp.controller;
 
 import tsp.model.Location;
 import tsp.model.Route;
+import tsp.model.TSPConfiguration;
 import tsp.model.algorithms.TSPAlgorithm;
 import tsp.model.algorithms.genetic_search.GeneticSearch;
 import tsp.model.algorithms.helpers.StoppingCondition;
@@ -18,25 +19,27 @@ import java.util.Set;
 
 public class Controller {
 
-    private static final int DEFAULT_NUMBER_OF_LOCATIONS = 20;
+    public static final String DEFAULT_PROBLEM_GENERATOR = "circular";
+    public static final int DEFAULT_NUMBER_OF_LOCATIONS = 20;
+    public static final String DEFAULT_ALGORITHM = "GeneticSearch";
 
+    private final TSPConfiguration configuration;
     private final List<TSPView> observers = new ArrayList<>();
+    private final Thread searchThread;
 
-    private StoppingCondition stoppingCondition;
-    private Thread searchThread;
-    private TSPProblemGenerator problemGenerator;
-    private int numberOfLocations;
-    private TSPAlgorithm searchAlgorithm;
     private Route bestFoundRoute;
 
-    public void initialize(String pProblemGenerator, int pNumberOfLocations, String pSearchAlgorithm) {
+    public Controller(String pProblemGenerator, int pNumberOfLocations, String pSearchAlgorithm) {
 
-        stoppingCondition = new StoppingCondition();
+        TSPProblemGenerator problemGenerator;
+        int numberOfLocations;
+        TSPAlgorithm algorithm;
+        StoppingCondition stoppingCondition = new StoppingCondition();
 
-        if (pNumberOfLocations == -1) {
-            numberOfLocations = DEFAULT_NUMBER_OF_LOCATIONS;
-        } else {
+        if (pNumberOfLocations < 10000 && pNumberOfLocations > 3) {
             numberOfLocations = pNumberOfLocations;
+        } else {
+            numberOfLocations = DEFAULT_NUMBER_OF_LOCATIONS;
         }
 
         switch (pProblemGenerator) {
@@ -54,18 +57,16 @@ public class Controller {
         switch (pSearchAlgorithm) {
             case "RandomSearch":
             default:
-                searchAlgorithm = new RandomSearch(this, problem, stoppingCondition, new Random());
+                algorithm = new RandomSearch(this, problem, stoppingCondition, new Random());
                 break;
             case "GeneticSearch":
-                searchAlgorithm = new GeneticSearch(this, problem, stoppingCondition, new Random());
+                algorithm = new GeneticSearch(this, problem, stoppingCondition, new Random());
                 break;
         }
 
-        searchThread = new Thread(() -> bestFoundRoute = searchAlgorithm.searchRoute());
+        configuration = new TSPConfiguration(problemGenerator, numberOfLocations, algorithm, stoppingCondition);
 
-        for (TSPView view : observers) {
-            view.notifyInitialized("gen:" + problemGenerator.getClass().getSimpleName() + "; #locations:" + numberOfLocations + "; algo:" + searchAlgorithm.getClass().getSimpleName());
-        }
+        searchThread = new Thread(() -> bestFoundRoute = algorithm.searchRoute());
     }
 
     public void startSearch() {
@@ -99,7 +100,7 @@ public class Controller {
             return;
         }
 
-        stoppingCondition.trigger();
+        configuration.getStoppingCondition().trigger();
 
         for (TSPView view : observers) {
             view.notifyStopSignalReceived();
@@ -117,8 +118,7 @@ public class Controller {
 
     public void registerView(TSPView view) {
         observers.add(view);
-        // TODO create separate Configuration class
-        view.notifyRegistered("gen:" + problemGenerator.getClass().getSimpleName() + "; #locations:" + numberOfLocations + "; algo:" + searchAlgorithm.getClass().getSimpleName());
+        view.notifyRegistered(configuration);
     }
 
     public void unregisterView(TSPView view) {

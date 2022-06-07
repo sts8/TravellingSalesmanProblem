@@ -30,18 +30,20 @@ public class Main {
             System.exit(1);
         }
 
-        String problem = "";
-        int locations = -1;
-        String algorithm = "";
+        String problemGenerator = Controller.DEFAULT_PROBLEM_GENERATOR;
+        int locations = Controller.DEFAULT_NUMBER_OF_LOCATIONS;
+        String algorithm = Controller.DEFAULT_ALGORITHM;
 
         if (cmd.hasOption("p")) {
-            problem = cmd.getOptionValue("p");
+            problemGenerator = cmd.getOptionValue("p");
         }
 
         if (cmd.hasOption("l")) {
             try {
                 locations = Integer.parseInt(cmd.getOptionValue("l"));
-            } catch (NumberFormatException ignored) {
+            } catch (NumberFormatException e) {
+                System.err.println("Parsing number of locations failed. Details: " + e.getMessage());
+                System.exit(1);
             }
         }
 
@@ -49,8 +51,7 @@ public class Main {
             algorithm = cmd.getOptionValue("a");
         }
 
-        Controller controller = new Controller();
-        controller.initialize(problem, locations, algorithm);
+        Controller controller = new Controller(problemGenerator, locations, algorithm);
 
         if (cmd.hasOption("c")) {
             controller.registerView(new CmdLineView(controller));
