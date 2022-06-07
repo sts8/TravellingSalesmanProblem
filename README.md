@@ -5,7 +5,7 @@ Implementation of the search for an (optimal) solution to the Travelling Salesma
 ![Travelling_Salesman_Search](https://user-images.githubusercontent.com/104705788/172116249-5566f2c7-642e-4cfc-bb3a-963551786143.png)
 
 
-TODO
+## TODO
 - display configuration in GUI and CmdLineView
 - more tests!
 - improve README file
@@ -18,3 +18,9 @@ TODO
 - improve and refactor constants in GUI
 - improve parameter parsing and handling
 
+
+## Build
+    mvn package
+
+## Run
+    java -jar ./target/TravellingSalesmanProblem-1.0-SNAPSHOT-jar-with-dependencies.jar --problem circular --locations 50 --algorithm GeneticSearch --gui
