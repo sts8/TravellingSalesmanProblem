@@ -1,16 +1,13 @@
 # Travelling Salesman Problem
 
 Implementation of the search for an (optimal) solution to the Travelling Salesman Problem. Used as an example project.
-
-![Travelling_Salesman_Search](https://user-images.githubusercontent.com/104705788/172116249-5566f2c7-642e-4cfc-bb3a-963551786143.png)
-
+![Travelling_Salesman_Search](https://user-images.githubusercontent.com/104705788/174355415-43602bfc-ed89-4712-bc70-d915b1ec370d.gif)
 
 ## TODO
 - improve README file
   - list used concepts and their use
   - screenshots
 - better run configs + as examples
-
 
 ## Build
     mvn package
