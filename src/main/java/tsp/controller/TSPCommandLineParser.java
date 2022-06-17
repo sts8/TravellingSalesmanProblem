@@ -9,8 +9,6 @@ import org.apache.commons.cli.ParseException;
 import tsp.view.cmdline.CmdLineView;
 import tsp.view.gui.Visualisation;
 
-import java.security.InvalidParameterException;
-
 public class TSPCommandLineParser {
 
     private TSPCommandLineParser() {
@@ -49,7 +47,7 @@ public class TSPCommandLineParser {
         }
 
         if (!cmd.hasOption("c") && !cmd.hasOption("g")) {
-            throw new InvalidParameterException("Either GUI or cmdline (or both) must be specified!");
+            throw new IllegalArgumentException("Either GUI or cmdline (or both) must be specified!");
         }
 
         if (cmd.hasOption("p")) {
@@ -62,7 +60,7 @@ public class TSPCommandLineParser {
             try {
                 locations = Integer.parseInt(cmd.getOptionValue("l"));
             } catch (NumberFormatException e) {
-                throw new InvalidParameterException("Parsing number of locations failed. Details: " + e.getMessage());
+                throw new IllegalArgumentException("Parsing number of locations failed. Details: " + e.getMessage());
             }
         } else {
             System.err.println("Number of locations not specified. Using " + Controller.DEFAULT_NUMBER_OF_LOCATIONS + ".");

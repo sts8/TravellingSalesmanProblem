@@ -12,7 +12,6 @@ import tsp.model.problem_generators.RandomTSPProblemGenerator;
 import tsp.model.problem_generators.TSPProblemGenerator;
 import tsp.view.TSPView;
 
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -51,7 +50,7 @@ public class Controller {
                 problemGenerator = new RandomTSPProblemGenerator(new Random(), numberOfLocations, 500, 500);
                 break;
             default:
-                throw new InvalidParameterException("Bad problem generator type specified.");
+                throw new IllegalArgumentException("Bad problem generator type specified.");
         }
 
         Set<Location> problem = problemGenerator.generateProblem();
@@ -64,7 +63,7 @@ public class Controller {
                 algorithm = new RandomSearch(this, problem, stoppingCondition, new Random(), slow);
                 break;
             default:
-                throw new InvalidParameterException("Bad algorithm specified.");
+                throw new IllegalArgumentException("Bad algorithm specified.");
         }
 
         configuration = new TSPConfiguration(problemGenerator, numberOfLocations, algorithm, stoppingCondition, slow);

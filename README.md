@@ -6,7 +6,6 @@ Implementation of the search for an (optimal) solution to the Travelling Salesma
 
 
 ## TODO
-- more tests!
 - improve README file
   - list used concepts and their use
   - screenshots
