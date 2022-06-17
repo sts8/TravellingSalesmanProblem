@@ -7,8 +7,8 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CircularMapGeneratorTest {
-
+class CircularTSPProblemGeneratorTest {
+    
     @Test
     void generateMap() {
 
@@ -18,5 +18,4 @@ class CircularMapGeneratorTest {
         assertEquals(25, map.size());
 //        System.out.println(map);
     }
-
 }
