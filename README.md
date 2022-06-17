@@ -20,5 +20,16 @@ Implementation of the search for an (optimal) solution to the Travelling Salesma
 ## Build
     mvn package
 
-## Run
-    java -jar ./target/TravellingSalesmanProblem-1.0-SNAPSHOT-jar-with-dependencies.jar --problem circular --locations 50 --algorithm GeneticSearch --gui
+## Usage
+    usage: java -jar ./target/TravellingSalesmanProblem-1.0-SNAPSHOT-jar-with-dependencies.jar
+    -p,--problem <arg>     ("random"/"circular"). Which problem generator to use.
+    -l,--locations <arg>   (4-9999). Number of locations on the map.
+    -a,--algorithm <arg>   ("genetic"/"random"). Search algorithm to use.
+    -c,--cmdline           Use command line as view.
+    -g,--gui               Use GUI as view.
+    -s,--slow              Slow down the search algorithm to improve visualisation.
+    -h,--help              Prints this help.
+
+    examples:
+    java -jar ./target/TravellingSalesmanProblem-1.0-SNAPSHOT-jar-with-dependencies.jar --gui
+    java -jar ./target/TravellingSalesmanProblem-1.0-SNAPSHOT-jar-with-dependencies.jar --problem circular --locations 50 --algorithm genetic --gui
