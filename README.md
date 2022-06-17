@@ -14,7 +14,6 @@ Implementation of the search for an (optimal) solution to the Travelling Salesma
 - improve genetic search, find best search parameters
 - use and enforce code style template
 - improve and refactor constants in GUI
-- improve parameter parsing and handling
 
 
 ## Build
