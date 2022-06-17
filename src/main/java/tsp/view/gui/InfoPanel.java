@@ -23,7 +23,7 @@ public class InfoPanel extends JPanel {
 
     public InfoPanel() {
 
-        setPreferredSize(new Dimension(500, 500));
+        setPreferredSize(new Dimension(350, 200));
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         setLayout(new GridLayout(0, 2));
 
