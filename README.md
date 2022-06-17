@@ -3,16 +3,12 @@
 Implementation of the search for an (optimal) solution to the Travelling Salesman Problem. Used as an example project.
 ![Travelling_Salesman_Search](https://user-images.githubusercontent.com/104705788/174355415-43602bfc-ed89-4712-bc70-d915b1ec370d.gif)
 
-## TODO
-- improve README file
-  - list used concepts and their use
-  - screenshots
-- better run configs + as examples
-
 ## Build
+
     mvn package
 
 ## Usage
+
     usage: java -jar ./target/TravellingSalesmanProblem-1.0-SNAPSHOT-jar-with-dependencies.jar
     -p,--problem <arg>     ("random"/"circular"). Which problem generator to use.
     -l,--locations <arg>   (4-9999). Number of locations on the map.
@@ -24,4 +20,4 @@ Implementation of the search for an (optimal) solution to the Travelling Salesma
 
     examples:
     java -jar ./target/TravellingSalesmanProblem-1.0-SNAPSHOT-jar-with-dependencies.jar --gui
-    java -jar ./target/TravellingSalesmanProblem-1.0-SNAPSHOT-jar-with-dependencies.jar --problem circular --locations 50 --algorithm genetic --gui
+    java -jar ./target/TravellingSalesmanProblem-1.0-SNAPSHOT-jar-with-dependencies.jar --problem random --locations 150 --algorithm genetic --gui
