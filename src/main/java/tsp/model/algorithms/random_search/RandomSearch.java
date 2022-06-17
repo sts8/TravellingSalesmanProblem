@@ -14,8 +14,8 @@ import static tsp.model.algorithms.helpers.BusyWaiting.busyWaiting;
 
 public class RandomSearch extends TSPAlgorithm {
 
-    public RandomSearch(Controller controller, Set<Location> problem, StoppingCondition stoppingCondition, Random random) {
-        super(controller, problem, stoppingCondition, random);
+    public RandomSearch(Controller controller, Set<Location> problem, StoppingCondition stoppingCondition, Random random, boolean slow) {
+        super(controller, problem, stoppingCondition, random, slow);
     }
 
     public Route searchRoute() {
@@ -25,7 +25,9 @@ public class RandomSearch extends TSPAlgorithm {
 
         while (stoppingCondition.isNotTriggered()) {
 
-            busyWaiting(2); // slows the algorithm down, better for visualization
+            if (slow) {
+                busyWaiting(2); // slows the algorithm down, better for visualization
+            }
 
             Route candidate = RandomRouteGenerator.generate(random, problem);
             notifyNewRouteTested(candidate);

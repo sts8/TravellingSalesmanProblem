@@ -1,8 +1,8 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Random50, RandomSearch, GUI" type="Application" factoryName="Application">
+  <configuration default="false" name="print help" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="tsp.Main" />
     <module name="TravellingSalesmanProblem" />
-    <option name="PROGRAM_PARAMETERS" value="--problem random --locations 50 --algorithm random --gui" />
+    <option name="PROGRAM_PARAMETERS" value="--help" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="tsp.model.*" />

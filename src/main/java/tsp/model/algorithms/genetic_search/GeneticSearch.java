@@ -23,8 +23,8 @@ public class GeneticSearch extends TSPAlgorithm {
     private Route shortestRoute;
     private double shortestRouteLength;
 
-    public GeneticSearch(Controller controller, Set<Location> problem, StoppingCondition stoppingCondition, Random random) {
-        super(controller, problem, stoppingCondition, random);
+    public GeneticSearch(Controller controller, Set<Location> problem, StoppingCondition stoppingCondition, Random random, boolean busyWaiting) {
+        super(controller, problem, stoppingCondition, random, busyWaiting);
     }
 
     @Override
@@ -45,7 +45,9 @@ public class GeneticSearch extends TSPAlgorithm {
 
         while (stoppingCondition.isNotTriggered()) {
 
-            busyWaiting(20); // slows the algorithm down, better for visualization
+            if (slow) {
+                busyWaiting(20); // slows the algorithm down, better for visualization
+            }
 
             population.addAll(generateOffspring(population)); // create next generation and add it to the population
 

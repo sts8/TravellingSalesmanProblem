@@ -10,12 +10,14 @@ public class TSPConfiguration {
     private final int numberOfLocations;
     private final TSPAlgorithm algorithm;
     private final StoppingCondition stoppingCondition;
+    private final boolean busyWaiting;
 
-    public TSPConfiguration(TSPProblemGenerator problemGenerator, int numberOfLocations, TSPAlgorithm algorithm, StoppingCondition stoppingCondition) {
+    public TSPConfiguration(TSPProblemGenerator problemGenerator, int numberOfLocations, TSPAlgorithm algorithm, StoppingCondition stoppingCondition, boolean busyWaiting) {
         this.problemGenerator = problemGenerator;
         this.numberOfLocations = numberOfLocations;
         this.algorithm = algorithm;
         this.stoppingCondition = stoppingCondition;
+        this.busyWaiting = busyWaiting;
     }
 
     public TSPProblemGenerator getProblemGenerator() {
@@ -32,6 +34,10 @@ public class TSPConfiguration {
 
     public StoppingCondition getStoppingCondition() {
         return stoppingCondition;
+    }
+
+    public boolean isBusyWaiting() {
+        return busyWaiting;
     }
 
 }

@@ -19,6 +19,8 @@ public class InfoPanel extends JPanel {
     private final JLabel bestIterationLabel = new JLabel();
     private final JLabel bestLengthLabel = new JLabel();
 
+    private boolean slowed = false;
+
     public InfoPanel() {
 
         setPreferredSize(new Dimension(500, 500));
@@ -41,7 +43,11 @@ public class InfoPanel extends JPanel {
     }
 
     public void updateCurrentIteration(int newCurrentIteration) {
-        currentIterationLabel.setText(String.valueOf(newCurrentIteration));
+        if (slowed) {
+            currentIterationLabel.setText(newCurrentIteration + " (slowed down!)");
+        } else {
+            currentIterationLabel.setText(String.valueOf(newCurrentIteration));
+        }
     }
 
     public void updateBestIteration(int newBestIteration) {
@@ -56,6 +62,8 @@ public class InfoPanel extends JPanel {
         problemLabel.setText(configuration.getProblemGenerator().getClass().getSimpleName());
         numberOfLocationsLabel.setText(String.valueOf(configuration.getNumberOfLocations()));
         algorithmLabel.setText(configuration.getAlgorithm().getClass().getSimpleName());
+
+        slowed = configuration.isBusyWaiting();
     }
 
 }

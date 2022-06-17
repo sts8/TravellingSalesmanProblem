@@ -2,7 +2,7 @@
   <configuration default="false" name="Circular50, RandomSearch, GUI" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="tsp.Main" />
     <module name="TravellingSalesmanProblem" />
-    <option name="PROGRAM_PARAMETERS" value="--problem circular --locations 50 --algorithm RandomSearch --gui" />
+    <option name="PROGRAM_PARAMETERS" value="--problem circular --locations 50 --algorithm random --gui" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="tsp.model.*" />

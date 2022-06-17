@@ -15,12 +15,14 @@ public abstract class TSPAlgorithm {
     protected final StoppingCondition stoppingCondition;
     protected final Set<Location> problem;
     protected final Random random;
+    protected final boolean slow;
 
-    public TSPAlgorithm(Controller controller, Set<Location> problem, StoppingCondition stoppingCondition, Random random) {
+    public TSPAlgorithm(Controller controller, Set<Location> problem, StoppingCondition stoppingCondition, Random random, boolean slow) {
         this.controller = Objects.requireNonNull(controller);
         this.stoppingCondition = Objects.requireNonNull(stoppingCondition);
         this.problem = Objects.requireNonNull(problem);
         this.random = Objects.requireNonNull(random);
+        this.slow = slow;
     }
 
     public void notifyNewRouteTested(Route newRoute) {

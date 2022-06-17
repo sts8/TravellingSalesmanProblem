@@ -22,6 +22,7 @@ public class CmdLineView implements TSPView {
         System.out.println("Problem: " + configuration.getProblemGenerator().getClass().getSimpleName());
         System.out.println("Number of Locations: " + configuration.getNumberOfLocations());
         System.out.println("Algorithm: " + configuration.getAlgorithm().getClass().getSimpleName());
+        System.out.println("Slowed down: " + configuration.isBusyWaiting());
     }
 
     @Override

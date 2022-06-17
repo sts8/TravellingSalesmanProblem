@@ -12,6 +12,7 @@ import tsp.model.problem_generators.RandomTSPProblemGenerator;
 import tsp.model.problem_generators.TSPProblemGenerator;
 import tsp.view.TSPView;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -19,9 +20,9 @@ import java.util.Set;
 
 public class Controller {
 
-    public static final String DEFAULT_PROBLEM_GENERATOR = "circular";
-    public static final int DEFAULT_NUMBER_OF_LOCATIONS = 20;
-    public static final String DEFAULT_ALGORITHM = "GeneticSearch";
+    public static final String DEFAULT_PROBLEM_GENERATOR = "random";
+    public static final int DEFAULT_NUMBER_OF_LOCATIONS = 100;
+    public static final String DEFAULT_ALGORITHM = "genetic";
 
     private final TSPConfiguration configuration;
     private final List<TSPView> observers = new ArrayList<>();
@@ -29,7 +30,7 @@ public class Controller {
 
     private Route bestFoundRoute;
 
-    public Controller(String pProblemGenerator, int pNumberOfLocations, String pSearchAlgorithm) {
+    public Controller(String pProblemGenerator, int pNumberOfLocations, String pSearchAlgorithm, boolean slow) {
 
         TSPProblemGenerator problemGenerator;
         int numberOfLocations;
@@ -42,29 +43,31 @@ public class Controller {
             numberOfLocations = DEFAULT_NUMBER_OF_LOCATIONS;
         }
 
-        switch (pProblemGenerator) {
-            case "random":
-            default:
-                problemGenerator = new RandomTSPProblemGenerator(new Random(), numberOfLocations, 500, 500);
-                break;
+        switch (pProblemGenerator.toLowerCase()) {
             case "circular":
                 problemGenerator = new CircularTSPProblemGenerator(numberOfLocations, 250);
                 break;
+            case "random":
+                problemGenerator = new RandomTSPProblemGenerator(new Random(), numberOfLocations, 500, 500);
+                break;
+            default:
+                throw new InvalidParameterException("Bad problem generator type specified.");
         }
 
         Set<Location> problem = problemGenerator.generateProblem();
 
-        switch (pSearchAlgorithm) {
-            case "RandomSearch":
+        switch (pSearchAlgorithm.toLowerCase()) {
+            case "genetic":
+                algorithm = new GeneticSearch(this, problem, stoppingCondition, new Random(), slow);
+                break;
+            case "random":
+                algorithm = new RandomSearch(this, problem, stoppingCondition, new Random(), slow);
+                break;
             default:
-                algorithm = new RandomSearch(this, problem, stoppingCondition, new Random());
-                break;
-            case "GeneticSearch":
-                algorithm = new GeneticSearch(this, problem, stoppingCondition, new Random());
-                break;
+                throw new InvalidParameterException("Bad algorithm specified.");
         }
 
-        configuration = new TSPConfiguration(problemGenerator, numberOfLocations, algorithm, stoppingCondition);
+        configuration = new TSPConfiguration(problemGenerator, numberOfLocations, algorithm, stoppingCondition, slow);
 
         searchThread = new Thread(() -> bestFoundRoute = algorithm.searchRoute());
     }
