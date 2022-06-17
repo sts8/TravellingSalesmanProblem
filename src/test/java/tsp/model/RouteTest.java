@@ -8,11 +8,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RouteTest {
 
-    Location location1 = new Location("locationA", 10, 20);
-    Location location2 = new Location("locationB", 50, 1);
-    Location location3 = new Location("locationC", 123, 321);
+    final Location location1 = new Location("locationA", 10, 20);
+    final Location location2 = new Location("locationB", 50, 1);
+    final Location location3 = new Location("locationC", 123, 321);
 
-    Route route = new Route(List.of(location1, location2, location3));
+    final Route route = new Route(List.of(location1, location2, location3));
 
     @Test
     void getLocations() {

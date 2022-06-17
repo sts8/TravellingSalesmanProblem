@@ -9,7 +9,8 @@ Implementation of the search for an (optimal) solution to the Travelling Salesma
 
 ## Usage
 
-    usage: java -jar ./target/TravellingSalesmanProblem-1.0-SNAPSHOT-jar-with-dependencies.jar
+    usage:
+    java -jar ./target/TravellingSalesmanProblem-1.0-SNAPSHOT-jar-with-dependencies.jar
     -p,--problem <arg>     ("random"/"circular"). Which problem generator to use.
     -l,--locations <arg>   (4-9999). Number of locations on the map.
     -a,--algorithm <arg>   ("genetic"/"random"). Search algorithm to use.
