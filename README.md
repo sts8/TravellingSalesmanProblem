@@ -3,6 +3,37 @@
 Implementation of the search for an (optimal) solution to the Travelling Salesman Problem. Used as an example project.
 ![Travelling_Salesman_Search](https://user-images.githubusercontent.com/104705788/174355415-43602bfc-ed89-4712-bc70-d915b1ec370d.gif)
 
+## Features
+
+- **XChart:** visualizing the best route length
+- **Apache Commons CLI:** parsing command line parameters
+- **GitHub workflow:** build and test after each commit
+- **Maven:** dependency management, building a stand-alone executable
+- **.gitignore:** from https://www.toptal.com/developers/gitignore/
+
+## MVC + Observer Pattern
+
+### Model
+
+Contains the business logic.
+
+- Problem representation classes (Location, Route)
+- Problem Generators
+- Search Algorithms
+
+### View
+
+Displays/visualises the model data and state.
+
+- CmdLineView
+- GUI/Visualisation (see animation)
+
+### Controller
+
+Manages Model and Views. Observer Pattern: Views can be registered and will be notified about events (see TSPView). The
+Controller is notified by the search algorithm about events, manages the registered views and controls the search
+procedure.
+
 ## Build
 
     mvn package
