@@ -22,6 +22,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.6.0</version>
                 <executions>
                     <execution>
                         <id>make-assembly</id>
@@ -43,11 +44,18 @@
                 </executions>
             </plugin>
 
-            <!-- execute tests during maven test phase-->
+            <!-- execute tests during maven test phase -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>3.1.2</version>
+            </plugin>
+
+            <!-- manage artifact versions -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.16.0</version>
             </plugin>
 
         </plugins>
@@ -62,18 +70,18 @@
             <version>1.5.0</version>
         </dependency>
 
-        <!-- graph visualising route length in GUI-->
+        <!-- graph visualising route length in GUI -->
         <dependency>
             <groupId>org.knowm.xchart</groupId>
             <artifactId>xchart</artifactId>
-            <version>3.8.1</version>
+            <version>3.8.5</version>
         </dependency>
 
-        <!-- JUnit tests-->
+        <!-- JUnit tests -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.8.2</version>
+            <version>5.10.0</version>
             <scope>test</scope>
         </dependency>
 
